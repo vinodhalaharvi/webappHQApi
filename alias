@@ -1,0 +1,5 @@
+alias testp="cd /home/s2687/webapps/testp"
+alias lib='cd /home/s2687/sw/pythonlib/python2.7/lib/python2.7/site-packages/'
+alias django='cd /home/s2687/sw/pythonlib/python2.7/lib/python2.7/site-packages/django'
+alias rtputils='cd /home/s2687/sw/pythonlib/python2.7/lib/python2.7/site-packages/rtputils'
+alias site-packages='cd /home/s2687/sw/pythonlib/python2.7/lib/python2.7/site-packages/'

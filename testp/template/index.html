@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Author: Vinod Halaharvi</title>
+  <script type="text/javascript" language="javascript" src="resources/media/js/jquery.js"></script>
+  <style type="text/css" title="currentStyle">
+	  @import "resources/media/css/demo_page.css";
+	  @import "resources/media/css/jquery.dataTables.css";
+	</style>
+  <style type="text/css">
+
+  </style>
+	<script type="text/javascript" language="javascript" src="resources/media/js/jquery.dataTables.js"></script>
+  <script type="text/javascript" charset="utf-8">
+  
+  //take data from search box and pass it to  server
+  //get form back from server and display
+  $(document).ready(function() {
+  //when a key is pressed
+  	$('#input').keyup(function(event){
+     if (event.which == 13){
+       event.preventDefault();
+     }
+       event.preventDefault();
+       $.ajax({
+       url: 'applogic',
+       dataType: 'html',
+       data: ({'name' : $(this).val()}),
+       contentType: "application/x-www-form-urlencoded",
+       context: 'document.body.outputdiv',
+       async:false,
+       type:'GET',
+       success: function(html){
+          $('form#target').html(html);
+         }, 
+       error: function(data){
+    			//alert('error'); 
+       },
+       }); //ajax
+  }); //keypress
+  
+  
+
+  
+  });  //end of document
+  </script>
+  </head>
+  <body>
+    <div id="inputdiv" align="center">
+	<h3>Start typing hqapi command. <h2>Eg. user list</h2></h3>
+      <input type="text" id="input" cols="30" rows="10" name="input/">
+      <br />
+    </div>
+    <div id="outputdiv" align="center" style="<marg></marg>in:0 50px 0 160px">
+    	<form id="target" ></form><p></p>
+    	<textarea id="target1" style="width:100%"></textarea>
+    </div>
+        
+   <script type="text/javascript">
+   //when form is submitted
+   //get database and display
+  	$('form#target').submit(function(event){
+       $.ajax({
+       	url: 'applogic/',
+       	dataType: 'html',
+       	data: ($(this).serialize()),
+       	contentType: "application/x-www-form-urlencoded",
+       	context: 'document.body.outputdiv',
+       	async:false,
+       	type:'GET',
+       	success: function(data){
+		$('textarea#target1').html(data);
+       	  }, 
+       	error: function(data){
+		$('textarea#target1').html(data);
+       	},
+       	}); //ajax
+       	return false;
+  	}); //submit
+    
+   </script>
+   
+   <script type="text/javascript">
+   $('#button').click(function(){
+    $("#table").dataTable()
+  }); 
+   </script>
+  <br />
+  <br />
+  <br />
+  <div align="center">
+  	<form action="/logout"><input type="submit" name="submit" value="logout" /></form>
+  </div>
+  <div class="error"></div>
+  </body>
+</html>
